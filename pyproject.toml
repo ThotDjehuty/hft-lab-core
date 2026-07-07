@@ -1,0 +1,52 @@
+[build-system]
+requires = ["maturin>=1.0,<2.0"]
+build-backend = "maturin"
+
+[project]
+name = "hfthot-lab-core"
+version = "3.0.0"
+description = "Professional-grade HFT tools with an open-source foundation"
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+authors = [
+    { name = "HFThot Research Lab", email = "contact@hfthot-lab.eu" }
+]
+keywords = ["hft", "trading", "algorithmic-trading", "finance", "backtesting"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Financial and Insurance Industry",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Rust",
+    "Topic :: Office/Business :: Financial",
+    "Topic :: Scientific/Engineering",
+]
+dependencies = [
+    "numpy>=1.20",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-benchmark>=4.0",
+    "maturin>=1.0",
+]
+
+[project.urls]
+Homepage = "https://hfthot-lab.eu"
+Documentation = "https://hfthot-lab-core.readthedocs.io"
+Repository = "https://github.com/ThotDjehuty/hfthot-lab-core"
+"Bug Tracker" = "https://github.com/ThotDjehuty/hfthot-lab-core/issues"
+
+[tool.maturin]
+features = ["python"]
+module-name = "hfthot_lab_core"

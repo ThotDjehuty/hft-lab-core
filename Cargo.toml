@@ -1,0 +1,57 @@
+[package]
+name = "hfthot-lab-core"
+version = "3.0.0"
+edition = "2021"
+authors = ["HFThot Research Lab <contact@hfthot-lab.eu>"]
+description = "Professional-grade HFT tools with an open-source foundation"
+license = "MIT"
+readme = "README.md"
+homepage = "https://hfthot-lab.eu"
+repository = "https://github.com/ThotDjehuty/hft-lab-core"
+keywords = ["hft", "trading", "algorithmic-trading", "finance", "backtesting"]
+categories = ["finance", "algorithms", "science"]
+
+[lib]
+name = "hfthot_lab_core"
+crate-type = ["cdylib", "lib"]
+path = "src/lib.rs"
+
+[dependencies]
+# PyO3 with stable ABI for Python bindings.
+# abi3-py38 => ONE wheel runs on CPython 3.8–3.13 (forward-compatible, portable
+# across deployment targets without a per-Python-version rebuild).
+pyo3 = { version = "0.22", features = ["extension-module", "abi3-py38"], optional = true }
+numpy = { version = "0.22", optional = true }
+
+# Core dependencies
+ndarray = "0.15"
+nalgebra = "0.32"
+rayon = "1.8"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+thiserror = "1.0"
+anyhow = "1.0"
+log = "0.4"
+
+# For limit order book
+ordered-float = "4.2"
+chrono = { version = "0.4", features = ["serde"] }
+
+# Random number generation for strategies
+rand = "0.8"
+rand_distr = "0.4"
+
+[features]
+default = ["python"]
+python = ["pyo3", "numpy"]
+proprietary = []
+
+[dev-dependencies]
+criterion = "0.5"
+tempfile = "3.10"
+
+[profile.release]
+opt-level = 3
+lto = "fat"
+codegen-units = 1
+strip = true
